@@ -20,3 +20,8 @@
 .contract-line button{color:#54d2e5;background:transparent;border:1px solid #56627a;padding:8px 12px;cursor:pointer;transition:border-color .2s}.contract-line button:hover{border-color:#54d2e5}
 @media(max-width:700px){.contract-line{align-items:flex-start;gap:10px}.contract-line>span{width:100%}.contract-line code{width:100%;font-size:12px}.herd{min-height:770px}.charging-bull{height:min(520px,110vw)}}
 @media(prefers-reduced-motion:reduce){.charge-intro{display:none}}
+
+/* The last gallop pose stays in the hero as a clean cutout. */
+.hero-final-bull{position:relative;z-index:1;width:68%;height:84%;background:url('/bull-charge-sprite.webp') 100% center/600% auto no-repeat;filter:drop-shadow(0 24px 42px #6955eb73)}
+.hero-halo{width:76%;height:76%;filter:blur(105px);opacity:.34}
+@media(max-width:700px){.hero-final-bull{width:75%;height:82%}}
