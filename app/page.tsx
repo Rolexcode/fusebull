@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, ArrowDown, Menu, X, Zap } from 'lucide-react';
 import Image from 'next/image';
 
@@ -19,9 +18,9 @@ function Label({children}:{children:React.ReactNode}) {return <span className="e
 function LinkButton({href,children,secondary=false}:{href:string,children:React.ReactNode,secondary?:boolean}) {return <a className={'button '+(secondary?'button-ghost':'button-primary')} href={href} target={href.startsWith('http')?'_blank':undefined} rel={href.startsWith('http')?'noopener noreferrer':undefined}>{children}<ArrowUpRight size={17} aria-hidden="true"/></a>}
 export default function Home(){
  const [active,setActive]=useState(false),[menu,setMenu]=useState(false),[scrolled,setScrolled]=useState(false),[copied,setCopied]=useState(false);
- const reduce=useReducedMotion();
  useEffect(()=>{const fn=()=>setScrolled(window.scrollY>30);fn();window.addEventListener('scroll',fn,{passive:true});return()=>window.removeEventListener('scroll',fn)},[]);
  return <main>
+  <div className="charge-intro" aria-hidden="true"><div className="charge-intro-halo"/><div className="charging-bull"><div className="charging-bull-sprite"/></div><div className="charge-impact"/></div>
   <header className={'nav '+(scrolled?'nav-scrolled':'')}>
    <a className="brand" href="#top" aria-label="Fuse Bull, back to top"><span className="brand-mark"><BullImage/></span><span>FUSE<span className="brand-light">BULL</span></span></a>
    <nav className={'nav-links '+(menu?'open':'')} aria-label="Main navigation"><a href="#about" onClick={()=>setMenu(false)}>THE BULL</a><a href="#origin" onClick={()=>setMenu(false)}>THE FUSE</a><a href="#herd" onClick={()=>setMenu(false)}>THE HERD</a><a className="nav-cta" href={FUSE_URL} target="_blank" rel="noopener noreferrer">ENTER FUSI.NG <ArrowUpRight size={15}/></a></nav>
@@ -29,7 +28,7 @@ export default function Home(){
   </header>
   <section className="hero" id="top"><div className="hero-grid"/><div className="hero-noise"/>
    <div className="hero-copy"><Label>FUSI.NG UNIVERSE <span className="divider">/</span> NEW ENTITY DETECTED</Label><h1><span>THE BULL</span><span>HAS ENTERED</span><em>THE FUSE.</em></h1><p>Meet $BULL. The new face charging through the Fusi.ng universe.</p><div className="actions"><LinkButton href={FUSE_URL}>ENTER THE FUSE</LinkButton><a className="text-link" href="#about">MEET THE BULL <ArrowDown size={16}/></a></div></div>
-   <div className="hero-art"><div className="hero-halo"/><motion.div className="bull-charge" initial={reduce?false:{x:'58vw',scale:.54,opacity:0,rotate:-8}} animate={{x:0,scale:1,opacity:1,rotate:0}} transition={{duration:1.05,delay:.12,ease:[.16,.84,.22,1]}}><BullImage priority className="hero-bull"/></motion.div><span className="charge-streak charge-streak-one" aria-hidden="true"/><span className="charge-streak charge-streak-two" aria-hidden="true"/></div>
+   <div className="hero-art"><div className="hero-halo"/><BullImage priority className="hero-bull"/></div>
   </section>
   <section className="intro section-wrap" id="about"><div className="section-top"><Label>001 / THE BULL</Label><span>AN ENTITY WITH HORNS</span></div><div className="intro-layout"><div><h2>NOT ANOTHER<br/>SUIT ON <span className="outline">WALL STREET.</span><br/><span className="gradient-text">THIS ONE HAS HORNS.</span></h2><p className="intro-text">The Bull of Fuse. A little electric, a little unpredictable, and right at home in the Fusi.ng universe.</p><div className="traits"><span>CHARGED</span><span>UNBOTHERED</span><span>ONCHAIN</span></div></div><div className="intro-visual"><BullImage/><span>// VISOR CHARGED</span></div></div></section>
   <section className="origin section-wrap" id="origin"><div className="section-top"><Label>002 / ORIGIN</Label><span>THE WORLD BEHIND THE BULL</span></div><h2>BUILT FROM<br/><span className="gradient-text">THE SAME ENERGY.</span></h2><p className="origin-lede">A mascot for the culture growing around Fusi.ng.</p><div className="steps">{steps.map(([n,title,desc])=><div className="step" key={n}><span className="step-num">{n} / 04</span><strong>{title}</strong><p>{desc}</p><span className="step-line"/></div>)}</div><div className="origin-foot"><span>FUSI.NG PLATFORM</span><span>ETHEREUM MAINNET <i/> UNISWAP V4</span></div></section>
